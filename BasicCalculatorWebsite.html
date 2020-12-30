@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3: Calculator</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            background: #610000;
+            font-family: "Lucida Console", Courier, monospace;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 300%;
+            background: #dbbdba;
+            padding: 10px;
+            border: 2px solid #000;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            grid-gap: 10px;
+            background: linear-gradient(to top, #000757, #4400ab);
+            padding: 10px;
+            border: 2px solid #000;
+        }
+
+        .grid-item {
+            border: none;
+            padding: 20px 10px;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .my-label {
+            background: #00566e;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 25px;
+        }
+
+        .my-input {
+            height: 50px;
+            width: 80%;
+            font-size: 100%;
+            text-align: center;
+        }
+
+        .button-eval {
+            font-size: 28px;
+            color: #fff;
+            background-color: #f44336;
+            border-radius: 10px;
+            padding: 15px;
+            border: 4px solid #780000;
+        }
+
+            .button-eval:hover {
+                background-color: #ed6b6b;
+                color: #000;
+                cursor: pointer;
+            }
+
+        .button-res {
+            font-size: 100%;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+            .button-res:hover {
+                background-color: #8f8f8f;
+                cursor: pointer;
+            }
+
+        .radio-label {
+            display: grid;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            border: 1px solid #005982;
+            background-color: #a1a1a1;
+            padding: 10px;
+            border-radius: 10px;
+            width: 100%;
+        }
+
+        .radio-btn {
+            opacity: 0;
+            cursor: pointer;
+            float: left;
+        }
+
+        .radio-box input[type="radio"] {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+            .radio-box input[type="radio"]:checked + label {
+                background-color: #c4edff;
+                border: 4px solid #005982;
+            }
+
+        .my-result {
+            height: 50px;
+            width: 100%;
+            font-size: 150%;
+            text-align: center;
+            font-weight: bold;
+            border: 5px solid #29ff34;
+            background-color: #c4edff;
+        }
+
+        .input-invalid {
+            border: 5px dashed red;
+        }
+    </style>
+
+    <script>
+        "use strict";
+        function evaluate() {
+            let val1 = parseInt(document.getElementById("operand1").value);
+            let val2_element = document.getElementById("operand2");
+            let val2 = parseInt(val2_element.value);
+            let op = getOperator();
+            if (op == "/" && val2 == 0) {
+                val2_element.classList.add("input-invalid");
+                alert("Cannot divide by 0! Please enter different number.");
+            } else {
+                let result = calculate(val1, val2, op);
+                displayResult(result);
+                val2_element.classList.remove("input-invalid");
+            }
+        }
+
+        function getOperator() {
+            let elm = document.getElementsByName("operator");
+            for (let i = 0; i < elm.length; i++) {
+                if (elm[i].checked) {
+                    return elm[i].value;
+                }
+            }
+        }
+
+        function calculate(val1, val2, op) {
+            let x;
+            switch (op) {
+                case '+':
+                    x = val1 + val2;
+                    break;
+                case '-':
+                    x = val1 - val2;
+                    break;
+                case '*':
+                    x = val1 * val2;
+                    break;
+                case '/':
+                    x = val1 / val2;
+                    break;
+                default:
+            } return x;
+        }
+
+        function displayResult(result) {
+            document.getElementById("display").value = result.toFixed(4);
+        }
+    </script>
+
+</head>
+<body>
+    <h1>BASIC CALCULATOR</h1>
+    <form method="post" action="javascript:evaluate()">
+        <div class="grid-container">
+            <div class="grid-item">
+                <label class="my-label" for="operand1">FIRST OPERAND</label>
+            </div>
+            <div class="grid-item">
+                <label class="my-label">OPERATOR</label>
+            </div>
+            <div class="grid-item">
+                <label class="my-label" for="operand2">SECOND OPERAND</label>
+            </div>
+            <div class="grid-item">
+                <input id="operand1" class="my-input" type="number" name="operand1" placeholder="..." />
+            </div>
+            <div class="grid-item">
+                <div class="radio-box">
+                    <input id="add" class="radio-btn" type="radio" name="operator" value="+" checked>
+                    <label for="add" class="radio-label">ADDITION  ( + )</label>
+                    <input id="minus" class="radio-btn" type="radio" name="operator" value="-">
+                    <label for="minus" class="radio-label">SUBSTRACTION  ( - )</label>
+                    <input id="multiply" class="radio-btn" type="radio" name="operator" value="*">
+                    <label for="multiply" class="radio-label">MULTIPLICATION  ( * )</label>
+                    <input id="divide" class="radio-btn" type="radio" name="operator" value="/">
+                    <label for="divide" class="radio-label">DIVISION  ( / )</label>
+                    <span class="marker"></span>
+                </div>
+            </div>
+            <div class="grid-item">
+                <input id="operand2" class="my-input" type="number" name="operand2" placeholder="..." />
+            </div>
+            <div class="grid-item"></div>
+            <div class="grid-item">
+                <input class="button-eval" type="submit" value="EVALUATE">
+            </div>
+            <div class="grid-item"></div>
+            <div class="grid-item">
+                <div class="my-label">ANSWER : </div>
+            </div>
+            <div class="grid-item">
+                <input id="display" class="my-result" type="number" name="display" placeholder="result..." readonly />
+            </div>
+
+            <div class="grid-item">
+                <input class="button-res" type="reset" value="RESET">
+            </div>
+
+        </div>
+
+    </form>
+</body>
+</html>

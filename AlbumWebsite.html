@@ -1,0 +1,663 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Londrina Sketch' rel='stylesheet'>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+
+    <title>Task 5: Album</title>
+    <style>
+        body {
+            background-image: url('images/background.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            color: #fff;
+            height: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: 'Londrina Sketch', cursive;
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            color: white;
+            text-align: right;
+            padding: 20px;
+        }
+
+        .carousel-caption {
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+            color: white;
+            font-weight: bold;
+            border: none;
+            position: absolute;
+            bottom: 0px;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            z-index: 2;
+            width: 100%;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .carousel-indicators {
+            bottom: -50px;
+        }
+
+        .modal-body {
+            width: 100%;
+        }
+
+        .nav li.active a,
+        .nav li a:hover,
+        .nav li.active a:focus,
+        .nav li.active a:hover {
+            background-color: #000;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .zoom {
+            transition: transform .2s;
+            margin: 0 auto;
+        }
+
+            .zoom:hover {
+                -ms-transform: scale(1.5); /* IE 9 */
+                -webkit-transform: scale(1.5); /* Safari 3-8 */
+                transform: scale(1.1);
+            }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $("#myTab a").click(function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });
+        });
+
+        $('#myModal').on('shown.bs.modal', function () {
+            $('#myInput').trigger('focus')
+        })
+
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">ALBUM</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="BlogWebsite.html">Back To Blog</a>
+                </li>
+            </ul>
+
+            <ul id="myTab" class="nav nav-tabs navbar-nav mr-auto mt-2 mt-lg-0" ">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#album-car" data-toggle="tab" style="color:#8c8c8c;">Album</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#album-all" data-toggle="tab" style="color:#8c8c8c;">Thumbnails</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+    <br><br><br>
+    <h1>ALBUM OF SPONGEBOB SQUAREPANTS CHARACTERS</h1>
+    <div class="tab-content">
+
+        <div id="album-car" class="tab-pane fade show active">
+
+
+
+            <div class="container-fluid">
+                <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                        <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+                        <li data-target="#carouselExampleCaptions" data-slide-to="4"></li>
+                        <li data-target="#carouselExampleCaptions" data-slide-to="5"></li>
+                        <li data-target="#carouselExampleCaptions" data-slide-to="6"></li>
+                        <li data-target="#carouselExampleCaptions" data-slide-to="7"></li>
+                    </ol>
+
+                    <div class="carousel-inner">
+                        <!--carousel item 1-->
+                        <div class="carousel-item active">
+                            <!--Modal: Name-->
+                            <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                    <!--Content-->
+                                    <div class="modal-content">
+                                        <!--Body-->
+                                        <div class="modal-body mb-0 p-0">
+                                            <img class="img-fluid" src="images/spongebob1.jpg" width="100%" height="auto">
+                                        </div>
+                                        <!--Footer-->
+                                        <div class="modal-footer justify-content-center">
+                                            <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Back</button>
+                                        </div>
+                                    </div>
+                                    <!--/.Content-->
+                                </div>
+                            </div>
+                            <!--Modal: Name-->
+                            <a>
+                                <img class="img-fluid z-depth-1 d-block mx-auto pt-3 w-50 zoom" src="images/spongebob1-min.jpg" alt="spongebob squarepant"
+                                     data-toggle="modal" data-target="#modal1">
+                            </a>
+                            <div class="carousel-caption d-none d-md-block w-50">
+                                <h5>Sponge! Bob! Square! Pants!</h5>
+                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            </div>
+                        </div>
+                        <!--carousel item 2-->
+                        <div class="carousel-item">
+                            <!--Modal: Name-->
+                            <div class="modal fade" id="modal8" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                    <!--Content-->
+                                    <div class="modal-content">
+                                        <!--Body-->
+                                        <div class="img-fluid modal-body mb-0 p-0 justify-content-center">
+                                            <img class="img-fluid" src="images/gary1.jpg" width="100%" height="auto">
+                                        </div>
+                                        <!--Footer-->
+                                        <div class="modal-footer justify-content-center">
+                                            <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Back</button>
+                                        </div>
+                                    </div>
+                                    <!--/.Content-->
+                                </div>
+                            </div>
+                            <!--Modal: Name-->
+                            <a>
+                                <img class="img-fluid z-depth-1 d-block mx-auto pt-3 w-50 zoom" src="images/gary1-min.jpg" alt="gary the snail"
+                                     data-toggle="modal" data-target="#modal8">
+                            </a>
+                            <div class="carousel-caption d-none d-md-block w-50">
+                                <h5>"I wish I can talk"</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                        </div>
+                        <!--carousel item 3-->
+                        <div class="carousel-item">
+                            <!--Modal: Name-->
+                            <div class="modal fade" id="modal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                    <!--Content-->
+                                    <div class="modal-content">
+                                        <!--Body-->
+                                        <div class="modal-body mb-0 p-0 justify-content-center">
+                                            <img class="img-fluid" src="images/plankton1.jpg" width="100%" height="auto">
+                                        </div>
+                                        <!--Footer-->
+                                        <div class="modal-footer justify-content-center">
+                                            <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Back</button>
+                                        </div>
+                                    </div>
+                                    <!--/.Content-->
+                                </div>
+                            </div>
+                            <!--Modal: Name-->
+                            <a>
+                                <img class="img-fluid z-depth-1 d-block mx-auto pt-3 w-50 zoom" src="images/plankton1-min.jpg" alt="plankton"
+                                     data-toggle="modal" data-target="#modal6">
+                            </a>
+                            <div class="carousel-caption d-none d-md-block w-50">
+                                <h5>Plankton ain't planktin</h5>
+                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                            </div>
+                        </div>
+                        <!--carousel item 4-->
+                        <div class="carousel-item">
+                            <!--Modal: Name-->
+                            <div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                    <!--Content-->
+                                    <div class="modal-content">
+                                        <!--Body-->
+                                        <div class="modal-body mb-0 p-0 justify-content-center">
+                                            <img class="img-fluid" src="images/squidward1.jpg" width="100%" height="auto">
+                                        </div>
+                                        <!--Footer-->
+                                        <div class="modal-footer justify-content-center">
+                                            <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Back</button>
+                                        </div>
+                                    </div>
+                                    <!--/.Content-->
+                                </div>
+                            </div>
+                            <!--Modal: Name-->
+                            <a>
+                                <img class="img-fluid z-depth-1 d-block mx-auto pt-3 w-50 zoom" src="images/squidward1-min.jpg" alt="squidward"
+                                     data-toggle="modal" data-target="#modal3">
+                            </a>
+                            <div class="carousel-caption d-none d-md-block w-50">
+                                <h5>Squidward can play flute!</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                        </div>
+                        <!--carousel item 5-->
+                        <div class="carousel-item">
+                            <!--Modal: Name-->
+                            <div class="modal fade" id="modal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                    <!--Content-->
+                                    <div class="modal-content">
+                                        <!--Body-->
+                                        <div class="modal-body mb-0 p-0 justify-content-center">
+                                            <img class="img-fluid" src="images/mrkrab1.jpg" width="100%" height="auto">
+                                        </div>
+                                        <!--Footer-->
+                                        <div class="modal-footer justify-content-center">
+                                            <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Back</button>
+                                        </div>
+                                    </div>
+                                    <!--/.Content-->
+                                </div>
+                            </div>
+                            <!--Modal: Name-->
+                            <a>
+                                <img class="img-fluid z-depth-1 d-block mx-auto pt-3 w-50 zoom" src="images/mrkrab1-min.jpg" alt="mr krab"
+                                     data-toggle="modal" data-target="#modal4">
+                            </a>
+                            <div class="carousel-caption d-none d-md-block w-50">
+                                <h5>Mr Krab loves money!</h5>
+                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                            </div>
+                        </div>
+                        <!--carousel item 6-->
+                        <div class="carousel-item">
+                            <!--Modal: Name-->
+                            <div class="modal fade" id="modal7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                    <!--Content-->
+                                    <div class="modal-content">
+                                        <!--Body-->
+                                        <div class="modal-body mb-0 p-0 justify-content-center">
+                                            <img class="img-fluid" src="images/karen1.jpg" width="100%" height="auto">
+                                        </div>
+                                        <!--Footer-->
+                                        <div class="modal-footer justify-content-center">
+                                            <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Back</button>
+                                        </div>
+                                    </div>
+                                    <!--/.Content-->
+                                </div>
+                            </div>
+                            <!--Modal: Name-->
+                            <a>
+                                <img class="img-fluid z-depth-1 d-block mx-auto pt-3 w-50 zoom" src="images/karen1-min.jpg" alt="karen AI"
+                                     data-toggle="modal" data-target="#modal7">
+                            </a>
+                            <div class="carousel-caption d-none d-md-block w-50">
+                                <h5>*beep* I..Am..A..Machine..*boop*</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                        </div>
+                        <!--carousel item 7-->
+                        <div class="carousel-item">
+                            <!--Modal: Name-->
+                            <div class="modal fade" id="modal10" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                    <!--Content-->
+                                    <div class="modal-content">
+                                        <!--Body-->
+                                        <div class="modal-body mb-0 p-0 justify-content-center">
+                                            <img class="img-fluid" src="images/dutchman1.jpg" width="100%" height="auto">
+                                        </div>
+                                        <!--Footer-->
+                                        <div class="modal-footer justify-content-center">
+                                            <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Back</button>
+                                        </div>
+                                    </div>
+                                    <!--/.Content-->
+                                </div>
+                            </div>
+                            <!--Modal: Name-->
+                            <a>
+                                <img class="img-fluid z-depth-1 d-block mx-auto pt-3 w-50 zoom" src="images/dutchman1-min.jpg" alt="patrick star"
+                                     data-toggle="modal" data-target="#modal10">
+                            </a>
+                            <div class="carousel-caption d-none d-md-block w-50">
+                                <h5>Arr! I'm Flying Dutchman!</h5>
+                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                            </div>
+                        </div>
+                        <!--carousel item 8-->
+                        <div class="carousel-item">
+                            <!--Modal: Name-->
+                            <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                    <!--Content-->
+                                    <div class="modal-content">
+                                        <!--Body-->
+                                        <div class="modal-body mb-0 p-0">
+                                            <img class="img-fluid" src="images/patrick1.jpg" width="100%" height="auto">
+                                        </div>
+                                        <!--Footer-->
+                                        <div class="modal-footer justify-content-center">
+                                            <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Back</button>
+                                        </div>
+                                    </div>
+                                    <!--/.Content-->
+                                </div>
+                            </div>
+                            <!--Modal: Name-->
+                            <a>
+                                <img class="img-fluid z-depth-1 d-block mx-auto pt-3 w-50 zoom" src="images/patrick1-min.jpg" alt="patrick star"
+                                     data-toggle="modal" data-target="#modal2">
+                            </a>
+                            <div class="carousel-caption d-none d-md-block w-50">
+                                <h5>I eat what I eat!</h5>
+                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="album-all" class="tab-pane fade">
+            <div class="container my-4">
+                <div class="row justify-content-center">
+                    <!-- Grid column -->
+                    <div class="col-lg-3 col-md-6 col-6 mb-4">
+                        <!--Modal: Name-->
+                        <div class="modal fade" id="modal01" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                <!--Content-->
+                                <div class="modal-content">
+                                    <!--Body-->
+                                    <div class="modal-body mb-0 p-0">
+                                        <img class="img-fluid" src="images/spongebob1.jpg" width="100%" height="auto">
+                                    </div>
+                                    <!--Footer-->
+                                    <div class="modal-footer justify-content-center">
+                                        <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Back</button>
+                                    </div>
+                                </div>
+                                <!--/.Content-->
+                            </div>
+                        </div>
+                        <!--Modal: Name-->
+                        <a>
+                            <img class="img-fluid z-depth-1 zoom" src="images/spongebob1-min.jpg" alt="spongebob squarepant"
+                                 data-toggle="modal" data-target="#modal01">
+                        </a>
+                    </div>
+                    <!-- Grid column -->
+                    <div class="col-lg-3 col-md-6 col-6 mb-4">
+                        <!--Modal: Name-->
+                        <div class="modal fade" id="modal02" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                <!--Content-->
+                                <div class="modal-content">
+                                    <!--Body-->
+                                    <div class="modal-body mb-0 p-0">
+                                        <img class="img-fluid" src="images/patrick1.jpg" width="100%" height="auto">
+                                    </div>
+                                    <!--Footer-->
+                                    <div class="modal-footer justify-content-center">
+                                        <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Back</button>
+                                    </div>
+                                </div>
+                                <!--/.Content-->
+                            </div>
+                        </div>
+                        <!--Modal: Name-->
+                        <a>
+                            <img class="img-fluid z-depth-1 zoom" src="images/patrick1-min.jpg" alt="patrick star"
+                                 data-toggle="modal" data-target="#modal02">
+                        </a>
+                    </div>
+                    <!-- Grid column -->
+                    <div class="col-lg-3 col-md-6 col-6 mb-4">
+                        <!--Modal: Name-->
+                        <div class="modal fade" id="modal03" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                <!--Content-->
+                                <div class="modal-content">
+                                    <!--Body-->
+                                    <div class="modal-body mb-0 p-0 justify-content-center">
+                                        <img class="img-fluid" src="images/squidward1.jpg" width="100%" height="auto">
+                                    </div>
+                                    <!--Footer-->
+                                    <div class="modal-footer justify-content-center">
+                                        <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Back</button>
+                                    </div>
+                                </div>
+                                <!--/.Content-->
+                            </div>
+                        </div>
+                        <!--Modal: Name-->
+                        <a>
+                            <img class="img-fluid z-depth-1 zoom" src="images/squidward1-min.jpg" alt="squidward"
+                                 data-toggle="modal" data-target="#modal03">
+                        </a>
+                    </div>
+                    <!-- Grid column -->
+                    <div class="col-lg-3 col-md-6 col-6 mb-4">
+                        <!--Modal: Name-->
+                        <div class="modal fade" id="modal04" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                <!--Content-->
+                                <div class="modal-content">
+                                    <!--Body-->
+                                    <div class="modal-body mb-0 p-0 justify-content-center">
+                                        <img class="img-fluid" src="images/mrkrab1.jpg" width="100%" height="auto">
+                                    </div>
+                                    <!--Footer-->
+                                    <div class="modal-footer justify-content-center">
+                                        <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Back</button>
+                                    </div>
+                                </div>
+                                <!--/.Content-->
+                            </div>
+                        </div>
+                        <!--Modal: Name-->
+                        <a>
+                            <img class="img-fluid z-depth-1 zoom" src="images/mrkrab1-min.jpg" alt="mr krab"
+                                 data-toggle="modal" data-target="#modal04">
+                        </a>
+                    </div>
+                </div>
+                <!-- Grid row -->
+                <div class="row justify-content-center">
+                    <!-- Grid column -->
+                    <div class="col-lg-3 col-md-6 col-6 mb-4">
+                        <!--Modal: Name-->
+                        <div class="modal fade" id="modal05" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                <!--Content-->
+                                <div class="modal-content">
+                                    <!--Body-->
+                                    <div class="modal-body mb-0 p-0 justify-content-center">
+                                        <img class="img-fluid" src="images/sandy1.jpg" width="100%" height="auto">
+                                    </div>
+                                    <!--Footer-->
+                                    <div class="modal-footer justify-content-center">
+                                        <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Back</button>
+                                    </div>
+                                </div>
+                                <!--/.Content-->
+                            </div>
+                        </div>
+                        <!--Modal: Name-->
+                        <a>
+                            <img class="img-fluid z-depth-1 zoom" src="images/sandy1-min.jpg" alt="sandy the squirrel"
+                                 data-toggle="modal" data-target="#modal05">
+                        </a>
+                    </div>
+                    <!-- Grid column -->
+                    <div class="col-lg-3 col-md-6 col-6 mb-4">
+                        <!--Modal: Name-->
+                        <div class="modal fade" id="modal06" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                <!--Content-->
+                                <div class="modal-content">
+                                    <!--Body-->
+                                    <div class="modal-body mb-0 p-0 justify-content-center">
+                                        <img class="img-fluid" src="images/plankton1.jpg" width="100%" height="auto">
+                                    </div>
+                                    <!--Footer-->
+                                    <div class="modal-footer justify-content-center">
+                                        <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Back</button>
+                                    </div>
+                                </div>
+                                <!--/.Content-->
+                            </div>
+                        </div>
+                        <!--Modal: Name-->
+                        <a>
+                            <img class="img-fluid z-depth-1 zoom" src="images/plankton1-min.jpg" alt="plankton"
+                                 data-toggle="modal" data-target="#modal06">
+                        </a>
+                    </div>
+                    <!-- Grid column -->
+                    <div class="col-lg-3 col-md-6 col-6 mb-4">
+                        <!--Modal: Name-->
+                        <div class="modal fade" id="modal07" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                <!--Content-->
+                                <div class="modal-content">
+                                    <!--Body-->
+                                    <div class="modal-body mb-0 p-0 justify-content-center">
+                                        <img class="img-fluid" src="images/karen1.jpg" width="100%" height="auto">
+                                    </div>
+                                    <!--Footer-->
+                                    <div class="modal-footer justify-content-center">
+                                        <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Back</button>
+                                    </div>
+                                </div>
+                                <!--/.Content-->
+                            </div>
+                        </div>
+                        <!--Modal: Name-->
+                        <a>
+                            <img class="img-fluid z-depth-1 zoom" src="images/karen1-min.jpg" alt="karen AI"
+                                 data-toggle="modal" data-target="#modal07">
+                        </a>
+                    </div>
+                    <!-- Grid column -->
+                    <div class="col-lg-3 col-md-6 col-6 mb-4">
+                        <!--Modal: Name-->
+                        <div class="modal fade" id="modal08" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                <!--Content-->
+                                <div class="modal-content">
+                                    <!--Body-->
+                                    <div class="img-fluid modal-body mb-0 p-0 justify-content-center">
+                                        <img class="img-fluid" src="images/gary1.jpg" width="100%" height="auto">
+                                    </div>
+                                    <!--Footer-->
+                                    <div class="modal-footer justify-content-center">
+                                        <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Back</button>
+                                    </div>
+                                </div>
+                                <!--/.Content-->
+                            </div>
+                        </div>
+                        <!--Modal: Name-->
+                        <a>
+                            <img class="img-fluid z-depth-1 zoom" src="images/gary1-min.jpg" alt="gary the snail"
+                                 data-toggle="modal" data-target="#modal08">
+                        </a>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <!-- Grid column -->
+                    <div class="col-lg-3 col-md-6 col-6 mb-4">
+                        <!--Modal: Name-->
+                        <div class="modal fade" id="modal09" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                <!--Content-->
+                                <div class="modal-content">
+                                    <!--Body-->
+                                    <div class="modal-body mb-0 p-0 justify-content-center">
+                                        <img class="img-fluid" src="images/larry1.jpg" width="100%" height="auto">
+                                    </div>
+                                    <!--Footer-->
+                                    <div class="modal-footer justify-content-center">
+                                        <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Back</button>
+                                    </div>
+                                </div>
+                                <!--/.Content-->
+                            </div>
+                        </div>
+                        <!--Modal: Name-->
+                        <a>
+                            <img class="img-fluid z-depth-1 zoom" src="images/larry1-min.jpg" alt="Larry the Chad"
+                                 data-toggle="modal" data-target="#modal09">
+                        </a>
+                    </div>
+                    <!-- Grid column -->
+                    <div class="col-lg-3 col-md-6 col-6 mb-4">
+                        <!--Modal: Name-->
+                        <div class="modal fade" id="modal010" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                <!--Content-->
+                                <div class="modal-content">
+                                    <!--Body-->
+                                    <div class="modal-body mb-0 p-0 justify-content-center">
+                                        <img class="img-fluid" src="images/dutchman1.jpg" width="100%" height="auto">
+                                    </div>
+                                    <!--Footer-->
+                                    <div class="modal-footer justify-content-center">
+                                        <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Back</button>
+                                    </div>
+                                </div>
+                                <!--/.Content-->
+                            </div>
+                        </div>
+                        <!--Modal: Name-->
+                        <a>
+                            <img class="img-fluid z-depth-1 zoom" src="images/dutchman1-min.jpg" alt="patrick star"
+                                 data-toggle="modal" data-target="#modal010">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>Copyright 2020</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Task 4: Dynamic List</title>
+    <style>
+        body {
+            color: #fff;
+            background-image: url('images/background.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            margin: 40px;
+            line-height: 200%;
+        }
+
+        .image-box {
+            float: left;
+            width: 450px;
+            height: 400px;
+        }
+
+        li:hover {
+            cursor: pointer;
+            background: #00307d;
+        }
+
+        li:active {
+            background: #7d006e;
+        }
+
+        .hilight {
+            color: #7d006e;
+            font-weight: bold;
+        }
+
+        .button {
+            padding: 15px 32px;
+            border-radius: 8px;
+            font-size: 100%;
+        }
+    </style>
+
+    <script>
+        "use strict";
+        function start() {
+            getUser();
+            addOne();
+        }
+
+        function name(identifier, description, imageUrl, alternative) {
+            this.identifier = identifier;
+            this.description = description;
+            this.imageUrl = imageUrl;
+            this.alternative = alternative;
+        }
+
+        let myItems2 = [
+            new name("person1", "An overly excited sponge", "images/spongebob1.jpg", "spongebob squarepant"),
+            new name("person2", "A flying ghost", "images/dutchman1.jpg", "flying dutchman"),
+            new name("person3", "A grumpy tentacles", "images/squidward1.jpg", "squidward"),
+            new name("person4", "A money loving crab", "images/mrkrab1.jpg", "mr krab"),
+            new name("person5", "A chad crustacean", "images/larry1.jpg", "larry"),
+            new name("person6", "An evil plankton", "images/plankton1.jpg", "plankton"),
+            new name("person7", "An annoying squirrel", "images/sandy1.jpg", "sandy"),
+            new name("person8", "A pet snail", "images/gary1.jpg", "gary the snail"),
+            new name("person9", "An advance AI machine", "images/karen1.jpg", "karen"),
+            new name("person10", "The best character!", "images/patrick1.jpg", "patrick star"),
+        ]
+
+        function getUser() {
+            let user = prompt("Hello user! Please enter your name", "Super User");
+            if (user != null) {
+                document.getElementById("welcome").innerHTML = "Welcome, " + user + "!";
+            }
+        }
+
+        function addOne() {
+            if (myItems2.length > 0) {
+                let i = Math.floor(Math.random() * myItems2.length);
+                let randomObj = myItems2[i];
+                let identifier = randomObj.identifier;
+                let description = randomObj.description;
+                let source = randomObj.imageUrl;
+                let alternative = randomObj.alternative;
+
+                let myList = document.getElementById("list");
+                let newItem = document.createElement("li");
+                let newIdAtt = document.createAttribute("id");
+
+                let newLink = document.createElement("a");
+                let newLinkAtt1 = document.createAttribute("href");
+
+                newIdAtt.value = identifier;
+                newItem.setAttribute("id", newIdAtt.value);
+                newLink.setAttribute("href", "#");
+                newItem.onclick = function () { changeImage(identifier, source, alternative); };
+                newItem.innerHTML = description;
+                newItem.appendChild(newLink);
+
+                myList.appendChild(newItem);
+                myItems2.splice(i, 1);
+                changeImage(identifier, source);
+            } else alert("No more to be added!");
+        }
+
+        function addAll() {
+            while (myItems2.length > 0) {
+                addOne();
+            }
+            alert("You have added all!");
+        }
+
+        function resetList() {
+            location.reload();
+            return false;
+        }
+
+        function changeImage(id, img1, alternative) {
+            document.getElementById("image").alt = alternative;
+            document.getElementById("image").src = img1;
+        }
+
+    </script>
+
+</head>
+<body onload="start()">
+    <header>
+        <h1>Task 4: Dynamic List</h1>
+        <h2 id="welcome">Welcome!</h2>
+    </header>
+    <div>
+        <div class="image-box">
+            <img id="image" width="400" src="" alt="" />
+        </div>
+        <input class="button" type="button" value="Add Person" onclick="addOne()">
+        <input class="button" type="button" value="Add All!" onclick="addAll()">
+        <input class="button" type="button" value="Reset" onclick="resetList()">
+        <div>
+            <ol id="list"></ol>
+        </div>
+    </div>
+</body>
+</html>

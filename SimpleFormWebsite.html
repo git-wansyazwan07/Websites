@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Task 2: Fun with Form</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        td {
+            padding: 10px;
+            text-align: right;
+        }
+
+        input[type=submit] {
+            cursor: pointer;
+        }
+
+        .input-invalid {
+            border: 2px dashed red;
+        }
+    </style>
+
+    <script>
+        "use strict";
+        function onFormSubmit() {
+            changeColor("color");
+            let val1 = parseInt(document.getElementById("number-one").value);
+            let val2 = parseInt(document.getElementById("number-two").value);
+            let isValid = bothValid(val1, val2, 1, 100);
+            if (isValid) {
+                getResult(val1, val2);
+            } else alert("please enter a valid number");
+        }
+
+        function changeColor(id) {
+            let clr = getValue(id);
+            document.body.style.backgroundColor = clr;
+        }
+
+        function validateNumber(id, min, max) {
+            let val = getValue(id);
+            let element = document.getElementById(id);
+            let isWithin = checkWithinRange(val, min, max);
+
+            if (isWithin) {
+                element.classList.remove("input-invalid");
+            }
+            else {
+                element.classList.add("input-invalid");
+                alert("Please insert valid number");
+            }
+        }
+
+        function bothValid(val1, val2, min, max) {
+            if ((val1 >= min && val1 <= max) && (val2 >= min && val2 <= max)) {
+                return true;
+            } else return false;
+        }
+
+        function checkWithinRange(value, min, max) {
+            if (value >= min && value <= max) return true;
+            else return false;
+        }
+
+        function getValue(id) {
+            let value = document.getElementById(id).value;
+            return value;
+        }
+
+        function prettifyString(id) {
+            let str = getValue(id);
+
+            // converting to lower case
+            let newStr = str.toLowerCase();
+
+            // removing whitespaces
+            newStr = newStr.replace(/ /g, '');
+
+            // replacing digits with underscore
+            newStr = newStr.replace(/[0-9]/g, "_");
+
+            // changing the in-field text
+            document.getElementById(id).value = newStr;
+        }
+
+        function getResult(val1, val2) {
+            let sum = (val1 + val2);
+            document.getElementById("sum").value = sum;
+            let diff = (val1 - val2);
+            document.getElementById("diff").value = diff;
+        }
+
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Task 2: Fun with Form</h1>
+    </header>
+
+    <div class="noBorder">
+        <form method="post" action="javascript:onFormSubmit()">
+
+            <table>
+                <tr>
+                    <div class="my-input-row">
+                        <td><label class="my-label" for="number-one">Number One (1-100):</label></td>
+                        <td>
+                            <input id="number-one" class="my-input" type="number" name="number-one"
+                                   onchange="javascript:validateNumber('number-one', 1, 100);" required />
+                        </td>
+                    </div>
+                </tr>
+
+                <tr>
+                    <div class="my-input-row">
+                        <td><label class="my-label" for="number-two">Number Two (1-100):</label></td>
+                        <td>
+                            <input id="number-two" class="my-input" type="number" name="number-two"
+                                   onchange="javascript:validateNumber('number-two', 1, 100);" required />
+                        </td>
+                    </div>
+                </tr>
+
+                <tr>
+                    <div class="my-input-row">
+                        <td><label class="my-label" for="string">String:</label></td>
+                        <td>
+                            <input id="string" class="my-input" type="text" name="string"
+                                   onchange="javascript:prettifyString('string');" />
+                        </td>
+                    </div>
+                </tr>
+
+                <tr>
+                    <div class="my-input-row">
+                        <td><label class="my-label" for="color">Color:</label></td>
+                        <td><input id="color" class="my-input" name="color" type="color" /></td>
+                    </div>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td><input class="my-input" type="submit" value="Process" /></td>
+                </tr>
+
+
+                <tr>
+                    <div class="my-input-row">
+                        <td><label class="my-label" for="sum">Sum:</label></td>
+                        <td><input id="sum" class="my-input" type="number" name="sum" readonly /></td>
+                    </div>
+                </tr>
+
+                <tr>
+                    <div class="my-input-row">
+                        <td><label class="my-label" for="diff">Difference:</label></td>
+                        <td><input id="diff" class="my-input" type="number" name="diff" readonly /></td>
+                    </div>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+</body>
+</html>
